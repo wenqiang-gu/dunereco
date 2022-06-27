@@ -64,8 +64,9 @@ local wcls_output = {
     name: 'simsignals',
     data: {
       anode: wc.tn(mega_anode),
-      digitize: false,  // true means save as RawDigit, else recob::Wire
+      digitize: true,  // true means save as RawDigit, else recob::Wire
       frame_tags: ['sig'],
+      frame_scale: [2.925e9], // convert mV to ADC: 1e9 * 4095 / 1400
     },
   }, nin=1, nout=1, uses=[mega_anode]),
 
@@ -149,9 +150,13 @@ local wcls_simchannel_sink = g.pnode({
   },
 }, nin=1, nout=1, uses=tools.anodes);
 
+local magnify = import 'pgrapher/experiment/dune10kt-1x2x6/magnify-sinks.jsonnet';
+local magnifyio = magnify(tools, "dune10kt-1x2x6.root");
+
 local multipass = [
   g.pipeline([
                signal_pipes[n],
+               // magnifyio.orig_pipe[n],
              ],
              'multipass%d' % n)
   for n in anode_iota
@@ -171,7 +176,8 @@ local retagger = g.pnode({
         '.*': 'orig',
       },
       merge: {
-        'orig\\d+': 'daq',
+        // 'orig\\d+': 'daq',
+        'orig\\d+': 'sig',
       },
     }],
   },
