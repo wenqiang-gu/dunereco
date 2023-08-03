@@ -141,8 +141,8 @@ base {
         wires: "protodunevd-wires-larsoft-v2.json.bz2",
 
         fields: [
-            "dunevd-resp-isoc3views-18d92.json.bz2",
-            "dunevd-resp-isoc3views-18d92.json.bz2", // repeat for top drifter
+            "dunevdcrp2-FR-fixcoll-adjustind.json.bz2",
+            "dunevdcrp2-FR-fixcoll-adjustind.json.bz2", // repeat for top drifter
         ],
 
         noise: "protodune-noise-spectra-v1.json.bz2",
