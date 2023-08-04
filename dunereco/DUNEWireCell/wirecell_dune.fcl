@@ -410,7 +410,7 @@ tpcrawdecoder_dunefd_horizdrift_1x2x6 : {
       plugins: ["WireCellPgraph", "WireCellGen","WireCellSio","WireCellRoot","WireCellLarsoft","WireCellTbb"]
 
       // needs to be found via your WIRECELL_PATH
-      configs: ["pgrapher/experiment/dune10kt-1x2x6/wcls-sim-drift-simchannel.jsonnet"]
+      configs: ["pgrapher/experiment/dune10kt-1x2x6/wcls-sim-drift-simchannel-splusn.jsonnet"]
 
 
       // Contract note: these exact "type:name" must be used to identify
@@ -419,6 +419,7 @@ tpcrawdecoder_dunefd_horizdrift_1x2x6 : {
       inputers: ["wclsSimDepoSource:"]
       outputers: [
          "wclsSimChannelSink:postdrift",
+         "wclsFrameSaver:simsignals",
          "wclsFrameSaver:simdigits"
       ]
 
